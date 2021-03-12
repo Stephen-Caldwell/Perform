@@ -13,3 +13,11 @@
     float: right;
     font-family: "Comfortaa";
 }
+
+.features{
+    width: 100%;
+}
+
+.feature-item{
+    float: left;
+}
