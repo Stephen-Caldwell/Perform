@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Comfortaa:100,200,300,400,500,600,700|Exo:100,200,300,400,500,600,700');
 
-.navbar, footer{
+.navbar, footer, .profile-top-nav{
     background-image: linear-gradient(260deg, #2376ae 0%, #c16ecf   100%);
 }
 
@@ -25,19 +25,61 @@
 }
 
 footer{
-    height: 75px;
+    min-height: 120px;
+    width: 100%;
+    margin: 20px 0 0 0;
     text-align: centre;
 }
 
-.social{
+.social, .getApp, .temp-link-dashboard{
     text-align: center;
+    padding: 20px;
+    color: #f4f4f4;
 }
 
-.social a{
+.social a, .getApp a{
     font-size: 150%;
     color: white;
 }
 
-.social i{
+.social i, .getApp i{
     padding: 20px;
+}
+
+.profile-pic{
+    background: url("https://i.imgur.com/IosD6ak.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 150px;
+    transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
+}
+
+.profile-nav{
+    background-image: linear-gradient(#2376ae 0%, #c16ecf   100%);
+    color: #f4f4f4;
+    font-family: "Comfortaa";
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.profile-nav li{
+    padding: 20px 5px 5px 5px;
+    list-style: none;
+}
+
+.todays-schedule{
+    width: 75%;
+    font-family: "Comfortaa";
+    margin-left: 12.5%;
+    margin: 5% 12.5% 5% 12.5%;
+}
+
+.profile-top-nav{
+    float: right;
+    height: 150px;
+    padding-top: 50px;
+    font-size: 150%;
 }
