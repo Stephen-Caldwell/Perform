@@ -1,73 +1,574 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <title>Perform</title>
-</head>
-<body>
 
-    <header>
-        <div class="row no-gutters">
-            <div class="col-md-2 profile-pic"></div>  
-            <div class="col-md-10 ">
-                <nav class="profile-top-nav navbar-dark navbar-expand-sm col-md-12">
-                    <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="active nav-item mr-2">
-                                <a class="nav-link" href="dashboard.html"><i class="fas fa-home"></i></a>
-                            </li>
-                            <li class="nav-item mr-2">
-                                <a class="nav-link" href="#"><i class="fas fa-envelope"></i></a>
-                            </li>
-                            <li class="nav-item mr-2">
-                                <a class="nav-link" href="#"><i class="fas fa-user-cog"></i></a>
-                            </li>
-                            <li class="nav-item mr-2">
-                                <a class="nav-link" href="#"><i class="fas fa-bars"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav> 
-            </div>         
-        </div>
-        <div class="row no-gutters">
-            <div class="col-md-2 profile-nav">
-                <ul>
-                    <li>Dashboard</li>
-                    <li>Clients</li>
-                    <li>Calendar</li>
-                    <li>Workouts</li>
-                    <li>Nutrition</li>
-                </ul>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.7.0/css/bootstrap.min.css">
+  <!-- CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- JavaScript -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Comfortaa:100,200,300,400,500,600,700|Exo:100,200,300,400,500,600,700');
+
+body {
+  font-family: 'Exo', sans-serif;
+  background-color: #f8f9fa;
+}
+
+.sidebar {
+  background-image: linear-gradient(180deg, #2376ae 0%, #c16ecf 100%);
+  color: #fff;
+}
+
+.sidebar .logo {
+  font-family: 'Comfortaa', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  margin: 20px;
+  color: #fff;
+}
+
+.sidebar .nav-link {
+  color: #fff;
+}
+
+.sidebar .nav-link:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.main-content {
+  margin-left: 250px;
+  padding: 20px;
+}
+
+.navbar {
+  background-image: linear-gradient(260deg, #2376ae 0%, #c16ecf 100%);
+  color: #fff;
+}
+
+.navbar .navbar-brand {
+  font-family: 'Comfortaa', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: #fff;
+}
+
+.navbar .navbar-nav .nav-link {
+  color: #fff;
+}
+
+.navbar .navbar-nav .nav-link:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.footer {
+  background-image: linear-gradient(260deg, #2376ae 0%, #c16ecf 100%);
+  color: #fff;
+  padding: 20px;
+}
+
+.profile-top-nav {
+  background-image: linear-gradient(260deg, #2376ae 0%, #c16ecf 100%);
+  color: #fff;
+}
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      padding: 48px 0;
+      overflow-x: hidden;
+      overflow-y: auto;
+      background-color: #f5f5f5;
+      border-right: 1px solid #e3e3e3;
+    }
+
+    .sidebar .nav-link {
+      font-weight: 500;
+      color: #333;
+    }
+
+    .sidebar .nav-link:hover {
+      color: #007bff;
+    }
+
+    .dashboard-content {
+      margin-left: 220px;
+      padding: 20px;
+    }
+
+    .card {
+      border-radius: 12px;
+      border: none;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+      background-color: #f5f5f5;
+      border-bottom: 1px solid #e3e3e3;
+      padding: 15px;
+    }
+
+    .card-title {
+      margin-bottom: 0;
+      font-weight: 600;
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    .table {
+      margin-bottom: 20px;
+    }
+
+    .message-board {
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 12px;
+      background-color: #f5f5f5;
+      border: 1px solid #e3e3e3;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar Navigation -->
+      <div class="col-lg-2">
+        <nav class="sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">
+                  <span data-feather="home"></span>
+                  Home
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="user"></span>
+                  Profile
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="calendar.html">
+                  <span data-feather="calendar"></span>
+                  Calendar
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="message-square"></span>
+                  Messages
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="shopping-bag"></span>
+                  Meals
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <!-- Dashboard Content -->
+      <div class="col-lg-10">
+        <div class="dashboard-content">
+          <!-- Welcome Message -->
+          <h2 class="mt-4">Welcome, John Doe!</h2>
+
+          <!-- Client List Card -->
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title">Client List</h5>
             </div>
-            <div class="col-md-10 dashboard">
-                <div class="card todays-schedule">
-                    <h3 class="card-header">Today's Schedule</h3>
-                    <div class="card-body">
-                        <h5 class="card-title">Client Name</h5>
-                        <p class="card-text">Booking Details</p>
-                        <a href="#" class="btn btn-primary">Calendar</a>
-                    </div>
-                </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">Client 1</li>
+                <li class="list-group-item">Client 2</li>
+                <li class="list-group-item">Client 3</li>
+              </ul>
             </div>
+          </div>
+
+          <!-- Upcoming Events Card -->
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title">Upcoming Events</h5>
+            </div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">Event 1</li>
+                <li class="list-group-item">Event 2</li>
+                <li class="list-group-item">Event 3</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Meals Section -->
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title">Meals</h5>
+  </div>
+  <div class="card-body">
+    <!-- Meals Table -->
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead class="thead-light">
+          <tr>
+            <th>Meal Type</th>
+            <th>Calories</th>
+            <th>Recipes</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Breakfast</td>
+            <td>350</td>
+            <td>
+              <ul>
+                <li>Recipe 1</li>
+                <li>Recipe 2</li>
+              </ul>
+            </td>
+            <td>
+              <button class="btn btn-sm btn-primary edit-meal">Edit</button>
+              <button class="btn btn-sm btn-danger delete-meal">Delete</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Lunch</td>
+            <td>500</td>
+            <td>
+              <ul>
+                <li>Recipe 3</li>
+                <li>Recipe 4</li>
+              </ul>
+            </td>
+            <td>
+              <button class="btn btn-sm btn-primary edit-meal">Edit</button>
+              <button class="btn btn-sm btn-danger delete-meal">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <!-- Add Meal Button -->
+    <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#addMealModal">
+      Add Meal
+    </button>
+  </div>
+</div>
+
+<!-- Add Meal Modal -->
+<div class="modal fade" id="addMealModal" tabindex="-1" role="dialog" aria-labelledby="addMealModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addMealModalLabel">Add Meal</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="addMealForm">
+          <div class="form-group">
+            <label for="mealType">Meal Type</label>
+            <input type="text" class="form-control" id="mealType" placeholder="Enter meal type">
+          </div>
+          <div class="form-group">
+            <label for="calories">Calories</label>
+            <input type="text" class="form-control" id="calories" placeholder="Enter calories">
+          </div>
+          <div class="form-group">
+            <label for="recipes">Recipes</label>
+            <textarea class="form-control" id="recipes" rows="3" placeholder="Enter recipes"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="addMealBtn">Add Meal</button>
+      </div>
+    </div>
+  </div>
+</div>
+          <!-- Edit Meal Modal -->
+<div class="modal fade" id="editMealModal" tabindex="-1" role="dialog" aria-labelledby="editMealModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editMealModalLabel">Edit Meal</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="editMealForm">
+          <div class="form-group">
+            <label for="editMealType">Meal Type</label>
+            <input type="text" class="form-control" id="editMealType" placeholder="Enter meal type">
+          </div>
+          <div class="form-group">
+            <label for="editCalories">Calories</label>
+            <input type="text" class="form-control" id="editCalories" placeholder="Enter calories">
+          </div>
+          <div class="form-group">
+            <label for="editRecipes">Recipes</label>
+            <textarea class="form-control" id="editRecipes" rows="3" placeholder="Enter recipes"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="saveMealBtn">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+          <!-- Message Board -->
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title">Message Board</h5>
+            </div>
+            <div class="card-body message-board">
+              <div class="mb-3">
+                <label for="messageInput" class="form-label">Write a message:</label>
+                <textarea class="form-control" id="messageInput" rows="3"></textarea>
+              </div>
+              <button class="btn btn-primary">Post</button>
+              <hr>
+              <h6>Client Messages:</h6>
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <strong>Client 1:</strong> Hi, I have a question.
+                  <div class="mt-2">
+                    <textarea class="form-control" rows="2"></textarea>
+                    <button class="btn btn-sm btn-primary mt-2">Reply</button>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <strong>Client 2:</strong> How can I track my progress?
+                  <div class="mt-2">
+                    <textarea class="form-control" rows="2"></textarea>
+                    <button class="btn btn-sm btn-primary mt-2">Reply</button>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-    </header>
-    <footer>
-        <div class="getApp">
-            <h6>Get the App</h6>
-            <a href="#" target="_blank"><i class="fab fa-google-play"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-app-store"></i></a>
-        </div>
-    </footer>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.7.0/js/bootstrap.bundle.min.js"></script>
+  <script>
+  // Add Meal Button click
+document.getElementById('addMealBtn').addEventListener('click', () => {
+  // Code to add meal to the table
+  const mealType = document.getElementById('mealType').value;
+  const calories = document.getElementById('calories').value;
+  const recipes = document.getElementById('recipes').value;
+
+  // Create a new row in the table
+  const mealTable = document.querySelector('.table');
+  const newRow = mealTable.insertRow(-1);
+
+  const mealTypeCell = newRow.insertCell(0);
+  const caloriesCell = newRow.insertCell(1);
+  const recipesCell = newRow.insertCell(2);
+  const actionsCell = newRow.insertCell(3);
+
+  mealTypeCell.textContent = mealType;
+  caloriesCell.textContent = calories;
+  recipesCell.innerHTML = `<ul>${recipes.split('\n').map(recipe => `<li>${recipe}</li>`).join('')}</ul>`;
+  actionsCell.innerHTML = `
+    <button class="btn btn-sm btn-primary edit-meal">Edit</button>
+    <button class="btn btn-sm btn-danger delete-meal">Delete</button>
+  `;
+
+  // Clear the form fields
+  document.getElementById('addMealForm').reset();
+
+  // Hide the modal
+  $('#addMealModal').modal('hide');
+});
+
+// Edit Meal button click
+document.querySelectorAll('.edit-meal').forEach(editBtn => {
+  editBtn.addEventListener('click', (e) => {
+    // Code to handle edit functionality
+  });
+});
+
+// Delete Meal button click
+document.querySelectorAll('.delete-meal').forEach(deleteBtn => {
+  deleteBtn.addEventListener('click', (e) => {
+    if (confirm('Are you sure you want to delete this meal?')) {
+      // Code to handle delete functionality
+    }
+  });
+});
+    // Edit Meal button click
+document.querySelectorAll('.edit-meal').forEach(editBtn => {
+  editBtn.addEventListener('click', (e) => {
+    // Get the row of the clicked edit button
+    const mealRow = editBtn.closest('tr');
+    
+    // Get the meal data from the row
+    const mealType = mealRow.querySelector('td:nth-child(1)').textContent;
+    const calories = mealRow.querySelector('td:nth-child(2)').textContent;
+    const recipes = mealRow.querySelector('td:nth-child(3) ul').innerHTML;
+    
+    // Populate the edit modal form with the meal data
+    document.getElementById('editMealType').value = mealType;
+    document.getElementById('editCalories').value = calories;
+    document.getElementById('editRecipes').value = recipes;
+    
+    // Show the edit modal
+    $('#editMealModal').modal('show');
+  });
+});
+
+// Save Changes button click in Edit Meal Modal
+document.getElementById('saveMealBtn').addEventListener('click', () => {
+  // Get the updated meal data from the edit modal form
+  const mealType = document.getElementById('editMealType').value;
+  const calories = document.getElementById('editCalories').value;
+  const recipes = document.getElementById('editRecipes').value;
+  
+  // Update the meal data in the table
+  const mealRow = document.querySelector('.table tbody tr');
+  mealRow.querySelector('td:nth-child(1)').textContent = mealType;
+  mealRow.querySelector('td:nth-child(2)').textContent = calories;
+  mealRow.querySelector('td:nth-child(3) ul').innerHTML = recipes;
+  
+  // Hide the edit modal
+  $('#editMealModal').modal('hide');
+});
+
+// Delete Meal button click
+document.querySelectorAll('.delete-meal').forEach(deleteBtn => {
+  deleteBtn.addEventListener('click', (e) => {
+    if (confirm('Are you sure you want to delete this meal?')) {
+      // Code to handle delete functionality
+      const mealRow = deleteBtn.closest('tr');
+      mealRow.remove();
+    }
+  });
+});
+// Add Message button click
+document.getElementById('addMessageBtn').addEventListener('click', () => {
+  // Get the message content from the input field
+  const messageContent = document.getElementById('messageInput').value;
+  
+  // Create a new message element
+  const messageElement = document.createElement('div');
+  messageElement.classList.add('message');
+  
+  const messageContentElement = document.createElement('p');
+  messageContentElement.textContent = messageContent;
+  
+  const messageInfoElement = document.createElement('div');
+  messageInfoElement.classList.add('message-info');
+  
+  const messageUserElement = document.createElement('span');
+  messageUserElement.classList.add('message-user');
+  messageUserElement.textContent = 'You';
+  
+  const messageTimeElement = document.createElement('span');
+  messageTimeElement.classList.add('message-time');
+  const currentTime = new Date().toLocaleTimeString();
+  messageTimeElement.textContent = currentTime;
+  
+  messageInfoElement.appendChild(messageUserElement);
+  messageInfoElement.appendChild(messageTimeElement);
+  
+  messageElement.appendChild(messageContentElement);
+  messageElement.appendChild(messageInfoElement);
+  
+  // Append the new message element to the message board
+  const messageBoard = document.getElementById('messageBoard');
+  messageBoard.appendChild(messageElement);
+  
+  // Clear the input field
+  document.getElementById('messageInput').value = '';
+});
+
+// Reply to Message button click
+document.getElementById('messageBoard').addEventListener('click', (e) => {
+  if (e.target.classList.contains('reply-message-btn')) {
+    const replyBtn = e.target;
+    const replyForm = replyBtn.nextElementSibling;
+    replyForm.classList.toggle('d-none');
+  }
+});
+
+// Reply form submit
+document.querySelectorAll('.reply-message-form').forEach(replyForm => {
+  replyForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    // Get the reply content from the form input field
+    const replyContent = replyForm.querySelector('.reply-message-input').value;
+    
+    // Create a new reply element
+    const replyElement = document.createElement('div');
+    replyElement.classList.add('reply');
+    
+    const replyContentElement = document.createElement('p');
+    replyContentElement.textContent = replyContent;
+    
+    const replyInfoElement = document.createElement('div');
+    replyInfoElement.classList.add('reply-info');
+    
+    const replyUserElement = document.createElement('span');
+    replyUserElement.classList.add('reply-user');
+    replyUserElement.textContent = 'You';
+    
+    const replyTimeElement = document.createElement('span');
+    replyTimeElement.classList.add('reply-time');
+    const currentTime = new Date().toLocaleTimeString();
+    replyTimeElement.textContent = currentTime;
+    
+    replyInfoElement.appendChild(replyUserElement);
+    replyInfoElement.appendChild(replyTimeElement);
+    
+    replyElement.appendChild(replyContentElement);
+    replyElement.appendChild(replyInfoElement);
+    
+    // Append the new reply element to the parent message
+    const parentMessage = replyForm.closest('.message');
+    parentMessage.appendChild(replyElement);
+    
+    // Clear the input field
+    replyForm.querySelector('.reply-message-input').value = '';
+    
+    // Hide the reply form
+    replyForm.classList.add('d-none');
+  });
+});
+
+    </script>
+
 </body>
+
 </html>
