@@ -1,30 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-
-<!-- JavaScript -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<!-- CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
-<!-- JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
-
-  <title>Calendar Page</title>
-  <!-- Include FullCalendar CSS and JS -->
+  <title>Calendar with Add Event Functionality</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
-  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js'></script>
-  <!-- Include Bootstrap CSS for styling -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <!-- Custom CSS -->
   <style>
     #calendar {
       max-width: 900px;
@@ -33,121 +12,158 @@
   </style>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Dashboard</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Home</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Calendar</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Schedule</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Messaging</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Meals</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
   <div class="container">
-    <h1>Calendar</h1>
+    <h1 class="text-center">Calendar with Add Event Functionality</h1>
     <div id="calendar"></div>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addEventModal">
-  Add Event
-</button>
-    
   </div>
-<!-- Add Event Modal -->
-<div class="modal fade" id="addEventModal" tabindex="-1" role="dialog" aria-labelledby="addEventModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+
+  <!-- Event Modal -->
+<div id="eventModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="addEventModalLabel">Add Event</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <h4 class="modal-title">Event Details</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
-        <form id="addEventForm">
+        <form id="eventForm">
           <div class="form-group">
             <label for="eventTitle">Title</label>
-            <input type="text" class="form-control" id="eventTitle" placeholder="Enter event title" required>
+            <input type="text" class="form-control" id="eventTitle" name="title">
           </div>
           <div class="form-group">
-  <label for="eventStart">Start Date and Time</label>
-  <input type="text" class="form-control" id="eventStart" name="eventStart" required>
-</div>
-
-<div class="form-group">
-  <label for="eventEnd">End Date and Time</label>
-  <input type="text" class="form-control" id="eventEnd" name="eventEnd" required>
-</div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Add Event</button>
+            <label for="eventStart">Start Date</label>
+            <input type="date" class="form-control" id="eventStartDate" name="startDate">
+            <input type="time" class="form-control" id="eventStartTime" name="startTime">
           </div>
+          <div class="form-group">
+            <label for="eventEnd">End Date</label>
+            <input type="date" class="form-control" id="eventEndDate" name="endDate">
+            <input type="time" class="form-control" id="eventEndTime" name="endTime">
+          </div>
+          <div class="form-group">
+            <label for="eventColor">Color</label>
+            <input type="color" class="form-control" id="eventColor" name="color">
+          </div>
+          <button type="submit" class="btn btn-primary" id="saveEventBtn">Save Event</button>
+          <button type="button" class="btn btn-danger" id="deleteEventBtn">Delete Event</button>
         </form>
       </div>
     </div>
   </div>
 </div>
 
-  <!-- Initialize FullCalendar -->
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
   <script>
-
-      document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth'
-        });
-        calendar.render();
-      });
     $(document).ready(function() {
-  // Add Event Form Submit
-  // Define an array to store the events
-var events = [];
+      var calendar = $('#calendar');
+      var eventModal = $('#eventModal');
+      var eventForm = $('#eventForm');
+      var saveEventBtn = $('#saveEventBtn');
+      var deleteEventBtn = $('#deleteEventBtn');
 
-// Function to add an event
-function addEvent(eventTitle, eventStart, eventEnd) {
-  // Create a new event object
-  var newEvent = {
-    title: eventTitle,
-    start: eventStart,
-    end: eventEnd
-  };
+      var events = [
+        // Sample events
+        {
+          id: 1,
+          title: 'Event 1',
+          start: '2023-05-10',
+          end: '2023-05-10',
+          color: '#E3615C'
+        }
+      ];
 
-  calendar.addEvent(events[newEvent]);
-  calender.render(events);
-  console.log(events)
-  };
-});
-document.addEventListener('DOMContentLoaded', function() {
-  // Initialize DateTimePicker
-  flatpickr('#eventStart', {
-    enableTime: true,
-    dateFormat: 'Y-m-d H:i',
-    time_24hr: true
-  });
+      // Initialize FullCalendar
+      calendar.fullCalendar({
+        header: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'month,agendaWeek,agendaDay'
+        },
+        defaultView: 'month',
+        editable: true,
+        events: events,
+        // Open the Event Modal when an event is clicked
+        eventClick: function(event, jsEvent, view) {
+          eventModal.modal('show');
+          eventForm[0].reset();
+          eventForm.attr('data-event-id', event.id);
+          $('#eventTitle').val(event.title);
+          $('#eventStart').val(moment(event.start).format('YYYY-MM-DD'));
+          $('#eventEnd').val(moment(event.end).format('YYYY-MM-DD'));
+          $('#eventColor').val(event.color);
+          deleteEventBtn.show();
+        },
+        // Open the Add Event Modal when a day is clicked
+        dayClick: function(date, jsEvent, view) {
+          eventModal.modal('show');
+          eventForm[0].reset();
+          eventForm.removeAttr('data-event-id');
+          $('#eventTitle').val('');
+          $('#eventStart').val(moment(date).format('YYYY-MM-DD'));
+          $('#eventEnd').val(moment(date).format('YYYY-MM-DD'));
+          $('#eventColor').val('#3788d8');
+          deleteEventBtn.hide();
+        }
+      });
 
-  flatpickr('#eventEnd', {
-    enableTime: true,
-    dateFormat: 'Y-m-d H:i',
-    time_24hr: true
-  });
-});
+      // Save or update event on modal submit
+       eventForm.on('submit', function(e) {
+    e.preventDefault();
+    var eventId = eventForm.attr('data-event-id');
+    var title = $('#eventTitle').val();
+    var startDate = $('#eventStartDate').val();
+    var startTime = $('#eventStartTime').val();
+    var endDate = $('#eventEndDate').val();
+    var endTime = $('#eventEndTime').val();
+    var color = $('#eventColor').val();
 
+    if (title && startDate && startTime && endDate && endTime) {
+      var start = moment(startDate + ' ' + startTime).format();
+      var end = moment(endDate + ' ' + endTime).format();
 
-    </script>
+      var eventData = {
+        title: title,
+        start: start,
+        end: end,
+        color: color
+      };
+
+          if (eventId) {
+            // Update existing event
+            var eventObj = calendar.fullCalendar('clientEvents', eventId)[0];
+            eventObj.title = title;
+            eventObj.start = start;
+            eventObj.end = end;
+            eventObj.color = color;
+            calendar.fullCalendar('updateEvent', eventObj);
+          } else {
+            // Add new event
+            eventData.id = events.length + 1; // Generate a unique ID
+            events.push(eventData);
+            calendar.fullCalendar('renderEvent', eventData, true);
+          }
+
+          eventModal.modal('hide');
+        }
+      });
+
+      // Delete event on button click
+      deleteEventBtn.on('click', function() {
+        var eventId = eventForm.attr('data-event-id');
+        if (eventId) {
+          events = events.filter(function(event) {
+            return event.id !== parseInt(eventId);
+          });
+          calendar.fullCalendar('removeEvents', eventId);
+          eventModal.modal('hide');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
